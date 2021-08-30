@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+
+<module xmlns="urn:jboss:module:1.1" name="org.postgresql">
+
+  <resources>
+    <resource-root path="postgresql-42.1.4.jre6.jar"/>
+  </resources>
+</module>

@@ -1,0 +1,30 @@
+batch
+embed-server
+
+/subsystem=datasources/jdbc-driver=postgresql-test:add(driver-name="postgresql-test",driver-module-name="org.postgresql",driver-class-name=org.postgresql.Driver)
+/subsystem=transactions:write-attribute(name=default-timeout,value=14400)
+/subsystem=camunda-bpm-platform/job-executor=default/job-acquisitions=default:map-put(name=properties,key=lockTimeInMillis,value=14400000)
+/subsystem=camunda-bpm-platform/process-engines=default:write-attribute(name=datasource, value=java:/PostgresDS/TestEngine)
+/subsystem=camunda-bpm-platform/process-engines=default:map-put(name=properties, key=defaultNumberOfRetries, value=1)
+/subsystem=camunda-bpm-platform/process-engines=default:map-put(name=properties, key=jobExecutorDeploymentAware, value=true)
+/subsystem=camunda-bpm-platform/process-engines=default:map-put(name=properties, key=ensureJobDueDateNotNull, value=true)
+
+/subsystem=datasources/data-source=TestEngine:add(\
+    jndi-name="java:/PostgresDS/TestEngine",\
+    enabled="true",\
+    use-java-context="true",\
+    connection-url="jdbc:postgresql://host.docker.internal:5432/testDB",\
+    driver-class="org.postgresql.Driver",\
+    driver-name="postgresql-test",\
+    user-name="test",\
+    password="test",\
+    spy="false",\
+    statistics-enabled="true",\
+    min-pool-size=10,\
+    max-pool-size=50,\
+    idle-timeout-minutes=1,\
+    jta="false",\
+    blocking-timeout-wait-millis=60000)
+
+run-batch
+stop-embedded-server
