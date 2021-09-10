@@ -11,3 +11,6 @@ In order to run the text example, the following requirements must be met:
 - The application must be built (check above).
 - You need to create a postgres role "test" : `createuser -P -s test`
 - Run the docker file.
+
+### Job definition suspension issue
+![alt text](job-definition-suspension-issue.png)
