@@ -9,8 +9,9 @@ Build all modules using `mvn clean install` using the repo root pom.xml.
 In order to run the test example, the following requirements must be met:
 - Docker must be installed.
 - The application must be built (check above).
-- You need to create a postgres role "test" : `createuser -P -s test`
-- Run the docker file.
+- A postgresql database should be available on local host (port 5432) with a camunda db already prepared
+- Modify the datasource config in wildfly_config.cli for the engine db (user credentials, db & schema)
+- Run the docker file binding port 8080 to allow access to camunda webapp.
 
 ### How to reproduce the issue
 Once the application get deployed and started, a startup job will do the following steps :
@@ -20,3 +21,5 @@ Once the application get deployed and started, a startup job will do the followi
 
 ### Job definition suspension issue
 ![alt text](job-definition-suspension-issue.png)
+
+Check manually on the camunda app if the suspended jobs have actually suspended

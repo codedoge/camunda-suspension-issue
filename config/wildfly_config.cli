@@ -13,11 +13,11 @@ embed-server
     jndi-name="java:/PostgresDS/TestEngine",\
     enabled="true",\
     use-java-context="true",\
-    connection-url="jdbc:postgresql://host.docker.internal:5432/testDB",\
+    connection-url="jdbc:postgresql://host.docker.internal:5432/postgres?currentSchema=camunda",\
     driver-class="org.postgresql.Driver",\
     driver-name="postgresql-test",\
-    user-name="test",\
-    password="test",\
+    user-name="postgres",\
+    password="postgres",\
     spy="false",\
     statistics-enabled="true",\
     min-pool-size=10,\
